@@ -10,7 +10,7 @@ return {
 				sorter = "name",
 			},
 			view = {
-				width = 34,
+				width = 25,
 			},
 			renderer = {
 				indent_width = 1,

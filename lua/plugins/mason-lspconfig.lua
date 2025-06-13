@@ -1,4 +1,4 @@
-local servers = {"jdtls", "angularls", "astro", "bashls", "clangd", "cssls", "dockerls", "eslint", "gopls", "groovyls", "html", "htmx", "jsonls", "kotlin_language_server", "lua_ls", "mesonlsp", "neocmake", "phpactor", "pylyzer", "rust_analyzer", "sqls", "ts_ls", "vuels", "yamlls", "zls"}
+local servers = {"jdtls", "angularls", "astro", "bashls", "clangd", "cssls", "dockerls", "eslint", "gopls", "groovyls", "html", "htmx", "jsonls", "kotlin_language_server", "lua_ls", "mesonlsp", "neocmake", "phpactor", "pylyzer", "rust_analyzer", "sqls", "ts_ls", "vuels", "yamlls", "zls", "hyprls"}
 
 return {
    "williamboman/mason-lspconfig.nvim",
@@ -13,7 +13,6 @@ return {
       end
 
       local opts = {}
-
 
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
