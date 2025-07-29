@@ -21,6 +21,5 @@ return {
 				git_ignored = false,
 			},
 		})
-		vim.cmd("NvimTreeOpen")
 	end,
 }

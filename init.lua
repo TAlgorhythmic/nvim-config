@@ -86,6 +86,7 @@ local optss = { noremap = true, silent = true }
 -- Mappings
 map('n', '<A-Left>', '<Cmd>BufferPrevious<CR>', optss)
 map('n', '<A-Right>', '<Cmd>BufferNext<CR>', optss)
+map('n', '<C-D>', '<Cmd>NvimTreeToggle<CR>', optss)
 
 map('n', '<leader><Left>', '<Cmd>BufferMovePrevious<CR>', optss)
 map('n', '<leader><Right>', '<Cmd>BufferMoveNext<CR>', optss)
