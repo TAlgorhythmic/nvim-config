@@ -12,7 +12,7 @@ return {
 	},
 	config = function()
 		local lspconfig = require("lspconfig")
-
+		lspconfig.slint_lsp.setup{}
 		lspconfig.phpactor.setup({
 			init_options = {
 				["language_server_phpstan.enabled"] = true,

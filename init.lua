@@ -30,6 +30,10 @@ require("lazy").setup({
    checker = { enabled = true }
 })
 
+vim.diagnostic.config({
+	virtual_text = true,
+})
+
 require("modus-themes").setup({
    variant = "tritanopia",
    transparent = false,
@@ -87,6 +91,12 @@ local optss = { noremap = true, silent = true }
 map('n', '<A-Left>', '<Cmd>BufferPrevious<CR>', optss)
 map('n', '<A-Right>', '<Cmd>BufferNext<CR>', optss)
 map('n', '<C-D>', '<Cmd>NvimTreeToggle<CR>', optss)
+
+-- Flutter
+map('n', '<leader><C-r>', '<Cmd>FlutterRun<CR>', optss)
+map('n', '<leader><C-h>', '<Cmd>FlutterDebug<CR>', optss)
+map('n', '<leader><C-f>', '<Cmd>FlutterEmulators<CR>', optss)
+map('n', '<leader><C-n>', '<Cmd>FlutterReload<CR>', optss)
 
 map('n', '<leader><Left>', '<Cmd>BufferMovePrevious<CR>', optss)
 map('n', '<leader><Right>', '<Cmd>BufferMoveNext<CR>', optss)
