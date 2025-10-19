@@ -1,36 +1,35 @@
-local servers = {"jdtls", "angularls", "astro", "bashls", "clangd", "cssls", "dockerls", "eslint", "gopls", "groovyls", "html", "htmx", "jsonls", "kotlin_language_server", "lua_ls", "mesonlsp", "neocmake", "phpactor", "pylyzer", "rust_analyzer", "sqls", "ts_ls", "vuels", "yamlls", "zls", "hyprls", "slint_lsp"}
+local servers = {"jdtls", "angularls", "astro", "bashls", "clangd", "cssls", "dockerls", "eslint", "gopls", "groovyls", "html", "htmx", "jsonls", "lua_ls", "mesonlsp", "neocmake", "phpactor", "pylyzer", "rust_analyzer", "sqls", "ts_ls", "vuels", "yamlls", "zls", "hyprls", "slint_lsp"}
 
 return {
-	"williamboman/mason-lspconfig.nvim",
-	config = function()
-		require("mason-lspconfig").setup({
-			ensure_installed = servers,
-			automatic_enable = false
-		})
+    "williamboman/mason-lspconfig.nvim",
+	dependencies = { "neovim/nvim-lspconfig" },
+    config = function()
+        require("mason-lspconfig").setup({
+            ensure_installed = servers,
+            automatic_installation = false
+        })
 
-		local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
-		if not lspconfig_status_ok then
-			return
-		end
+        local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-		local opts = {}
+        for _, server in pairs(servers) do
+            -- Load server-specific settings if they exist
+            local opts = {}
+            local require_ok, conf_opts = pcall(require, "lsp.settings." .. server)
+            if require_ok then
+                opts = conf_opts
+            end
 
-		local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-		for _, server in pairs(servers) do
-			opts = {}
-
-			server = vim.split(server, "@")[1]
-
-			local require_ok, conf_opts = pcall(require, "lsp.settings." .. server)
-			if require_ok then
-				opts = vim.tbl_deep_extend("force", conf_opts, opts)
-			end
-
-			lspconfig[server].setup({
-				capabilities = capabilities,
-				settings = opts
-			})
-		end
-	end,
+            -- Define the server in the new API
+            if not vim.lsp.config[server] then
+                vim.lsp.config[server] = {
+                    default_config = {
+                        cmd = { server },
+                        capabilities = capabilities,
+                        settings = opts,
+                        -- filetypes, root_dir, etc., can go here
+                    }
+                }
+            end
+        end
+    end,
 }
