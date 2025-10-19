@@ -23,7 +23,6 @@ return {
             if not vim.lsp.config[server] then
                 vim.lsp.config[server] = {
                     default_config = {
-                        cmd = { server },
                         capabilities = capabilities,
                         settings = opts,
                         -- filetypes, root_dir, etc., can go here
