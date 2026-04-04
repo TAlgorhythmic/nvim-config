@@ -34,7 +34,7 @@ vim.diagnostic.config({
 	virtual_text = true,
 })
 
-require("modus-themes").setup({
+--[[require("modus-themes").setup({
 	variants = {
 		modus_operandi = "default",
 		modus_vivendi = "default",
@@ -49,15 +49,26 @@ require("modus-themes").setup({
 	},
 	on_colors = function() end,
 	on_highlights = function() end,
-})
+})]]
 
-vim.cmd("colorscheme modus_vivendi")
+vim.cmd("colorscheme cyberdream")
 
 vim.api.nvim_set_hl(0, "Number", { fg = "#33CCFF", bold = true })
 vim.api.nvim_set_hl(0, "Constant", { fg = "#77A7FF" })
-vim.api.nvim_set_hl(0, "String", { fg = "#E1D900" })
+vim.api.nvim_set_hl(0, "Keyword", { fg = "#D06FFF", bold = true })
+vim.api.nvim_set_hl(0, "Operator", { fg = "#ffffff" })
+vim.api.nvim_set_hl(0, "String", { fg = "#e1d900" })
+vim.api.nvim_set_hl(0, "@variable", { fg = "#C7FAFF" })
+vim.api.nvim_set_hl(0, "Identifier", { fg = "#B3CAFF" })
+vim.api.nvim_set_hl(0, "Delimiter", { fg = "#9F9F9F" })
+vim.api.nvim_set_hl(0, "Function", { fg = "#D0FFE1" })
+vim.api.nvim_set_hl(0, "@lsp.type.selfTypeKeyword.rust", { fg = "#bd5eff" })
+vim.api.nvim_set_hl(0, "@lsp.type.typeAlias.rust", { fg = "#00F7FF" })
+vim.api.nvim_set_hl(0, "Type", { fg = "#00E6B1" })
+vim.api.nvim_set_hl(0, "@type.builtin", { fg = "#ffbd5e" })
 
 vim.cmd("hi link @keyword.function Keyword")
+vim.cmd("hi link @lsp.type.interface.rust Constant")
 vim.cmd("hi link htmlTagName Type");
 vim.cmd("hi link typescriptVariableDeclaration Identifier")
 vim.cmd("hi link typescriptIdentifierName Constant")
