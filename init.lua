@@ -24,10 +24,10 @@ vim.opt.rtp:prepend(lazypath)
 vim.opt.rtp:prepend(colorspath)
 -- require("algorhythmics")
 require("lazy").setup({
-   spec = {
-      { import = "plugins"},
-   },
-   checker = { enabled = true }
+	spec = {
+		{ import = "plugins"},
+	},
+	checker = { enabled = true }
 })
 
 vim.diagnostic.config({
@@ -35,16 +35,19 @@ vim.diagnostic.config({
 })
 
 require("modus-themes").setup({
-   variant = "tritanopia",
-   transparent = false,
-   dim_inactive = false,
-   hide_inactive_statusline = false,
-   styles = {
-      comments = { italic = false },
-      functions = { fg = "#CFFFF7", italic = false },
-      keywords = { bold = true, italic = false },
-   },
-   on_colors = function() end,
+	variants = {
+		modus_operandi = "default",
+		modus_vivendi = "default",
+	},
+	transparent = false,
+	dim_inactive = false,
+	hide_inactive_statusline = false,
+	styles = {
+		comments = { italic = false },
+		functions = { fg = "#CFFFF7", italic = false },
+		keywords = { bold = true, italic = false },
+	},
+	on_colors = function() end,
 	on_highlights = function() end,
 })
 
@@ -70,22 +73,27 @@ vim.cmd("hi link @type.builtin.java Keyword")
 local terminals = {}
 
 function G_toggle_terminal()
-   local termi = require("toggleterm.terminal").Terminal
-   local term = termi:new({ cmd = "zsh", hidden = true })
-   table.insert(terminals, term)
+	local termi = require("toggleterm.terminal").Terminal
+	local term = termi:new({ cmd = "zsh", hidden = true })
+	table.insert(terminals, term)
 
-   term:toggle()
+	term:toggle()
 end
 
 function G_toggle_all_terminals()
-    for _, term in ipairs(terminals) do
-        term:toggle()
-    end
+	for _, term in ipairs(terminals) do
+		term:toggle()
+	end
 end
 
 local map = vim.api.nvim_set_keymap
 local optss = { noremap = true, silent = true }
 
+require("time-tracker").setup({
+	data_file = vim.fn.stdpath("data") .. "/time-tracker.db",
+	tracking_events = { "BufEnter", "BufWinEnter", "CursorMoved", "CursorMovedI", "WinScrolled" },
+	tracking_timeout_seconds = 5 * 60, -- 5 minutes
+})
 
 -- Mappings
 map('n', '<A-Left>', '<Cmd>BufferPrevious<CR>', optss)
@@ -131,10 +139,10 @@ map("n", "<A-o>", "<Cmd>lua require('jdtls').organize_imports()<CR>", optss)
 map("i", "<A-o>", "<Cmd>lua require('jdtls').organize_imports()<CR>", optss)
 map('i', '<Esc>', [[pumvisible() ? "\<C-e>" : "\<Esc>"]], { expr = true, silent = true })
 map(
-  "i",
-  "<CR>",
-  [[pumvisible() ? (complete_info().selected == -1 ? "\<C-e><CR>" : "\<C-y>") : "\<CR>"]],
-  { expr = true, silent = true }
+	"i",
+	"<CR>",
+	[[pumvisible() ? (complete_info().selected == -1 ? "\<C-e><CR>" : "\<C-y>") : "\<CR>"]],
+	{ expr = true, silent = true }
 )
 map('i', '<Tab>', [[pumvisible() ? "\<C-n>" : "\<Tab>"]], { expr = true, silent = true })
 map('i', '<S-Tab>', [[pumvisible() ? "\<C-p>" : "\<BS>"]], { expr = true, silent = true })

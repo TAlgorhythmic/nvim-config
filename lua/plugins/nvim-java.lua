@@ -10,6 +10,5 @@ return {
 			root_dir = dir,
 		}
 		require("jdtls").start_or_attach(config)
-		require("lspconfig").jdtls.setup({})
 	end,
 }

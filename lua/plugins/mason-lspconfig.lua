@@ -1,4 +1,4 @@
-local servers = {"jdtls", "angularls", "astro", "bashls", "clangd", "cssls", "dockerls", "eslint", "gopls", "groovyls", "html", "htmx", "jsonls", "lua_ls", "mesonlsp", "neocmake", "phpactor", "pylyzer", "rust_analyzer", "sqls", "ts_ls", "vuels", "yamlls", "zls", "hyprls", "slint_lsp"}
+local servers = {"jdtls", "astro", "bashls", "clangd", "cssls", "dockerls", "eslint", "gopls", "groovyls", "html", "jsonls", "lua_ls", "mesonlsp", "neocmake", "phpactor", "pylyzer", "rust_analyzer", "sqls", "ts_ls", "vuels", "yamlls", "zls", "hyprls", "slint_lsp"}
 
 return {
     "williamboman/mason-lspconfig.nvim",
