@@ -65,9 +65,10 @@ vim.api.nvim_set_hl(0, "Function", { fg = "#D0FFE1" })
 vim.api.nvim_set_hl(0, "@lsp.type.selfTypeKeyword.rust", { fg = "#bd5eff" })
 vim.api.nvim_set_hl(0, "@lsp.type.typeAlias.rust", { fg = "#00F7FF" })
 vim.api.nvim_set_hl(0, "Type", { fg = "#00E6B1" })
-vim.api.nvim_set_hl(0, "@type.builtin", { fg = "#ffbd5e" })
+vim.api.nvim_set_hl(0, "@type.builtin", { fg = "#00E6B1" })
 
 vim.cmd("hi link @keyword.function Keyword")
+vim.cmd("hi link @type.builtin Type")
 vim.cmd("hi link @lsp.type.interface.rust Constant")
 vim.cmd("hi link htmlTagName Type");
 vim.cmd("hi link typescriptVariableDeclaration Identifier")
@@ -79,7 +80,7 @@ vim.cmd("hi link tsxAttrib Variable")
 vim.cmd("hi link typescriptDefault Keyword")
 vim.cmd("hi link @lsp.type.modifier.java Keyword")
 vim.cmd("hi link @keyword.type.java Keyword")
-vim.cmd("hi link @type.builtin.java Keyword")
+vim.cmd("hi link @type.builtin.java @type.builtin")
 
 local terminals = {}
 
