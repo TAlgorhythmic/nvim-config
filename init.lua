@@ -82,22 +82,6 @@ vim.cmd("hi link @lsp.type.modifier.java Keyword")
 vim.cmd("hi link @keyword.type.java Keyword")
 vim.cmd("hi link @type.builtin.java @type.builtin")
 
-local terminals = {}
-
-function G_toggle_terminal()
-	local termi = require("toggleterm.terminal").Terminal
-	local term = termi:new({ cmd = "zsh", hidden = true })
-	table.insert(terminals, term)
-
-	term:toggle()
-end
-
-function G_toggle_all_terminals()
-	for _, term in ipairs(terminals) do
-		term:toggle()
-	end
-end
-
 local map = vim.api.nvim_set_keymap
 local optss = { noremap = true, silent = true }
 
@@ -133,11 +117,12 @@ map('n', "<C-Up>", [[<C-\><C-n><C-w>k]], optss)
 map('n', '<C-Left>', [[<C-\><C-n><C-w>h]], optss)
 map('n', '<C-Right>', [[<C-\><C-n><C-w>l]], optss)
 map('n', '<C-Down>', [[<C-\><C-n><C-w>j]], optss)
-map("n", "<leader>1", "<cmd>lua vim.lsp.buf.definition()<CR>", optss)
+map("n", "<leader>1", "<cmd>lua vim.lsp.buf.implementation()<CR>", optss)
 map("n", "<leader>2", '<cmd>lua vim.lsp.buf.code_action()<CR>', optss)
 map("n", "<leader>3", "<cmd>lua vim.lsp.buf.hover()<CR>", optss)
-map("n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", optss)
-map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", optss)
+map("n", "<leader>4", "<cmd>lua vim.lsp.buf.references()<CR>", optss)
+map("n", "<leader>5", "<cmd>Telescope lsp_references<CR>", optss)
+map("n", "gd", "<cmd>lua vim.lsp.buf.definition()()<CR>", optss)
 map("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", optss)
 map("n", "<leader>li", "<cmd>LspInfo<cr>", optss)
 map("n", "<leader>lI", "<cmd>LspInstallInfo<cr>", optss)
